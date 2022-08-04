@@ -30,12 +30,7 @@ void main() {
       // atm = ATM();
       getIt.unregister<Bank>();
       getIt.unregister<ATM>();
-      setup();
-
-     
-      
-      
-      
+      setup();   
     },
   );
 
@@ -136,16 +131,21 @@ void main() {
     test('checkBalance() ', () {
     double result = getIt.get<ATM>().checkBalance(pin: 1234);
     expect(result, 50000.0);
+    expect(() => getIt.get<ATM>().checkBalance(pin: 9876), throwsException);
   },);
 
     test('withdraw() ', () async {
       double result = await getIt.get<ATM>().withdraw(pin: 1234, amount: 3000.0);
       expect(result, 47000.0);
+      expect(() => getIt.get<ATM>().withdraw(pin: 9876, amount: 3000.0), throwsException);
+      expect(() => getIt.get<ATM>().withdraw(pin: 1234, amount: 60000.0 ), throwsException);
     },);
 
     test('deposit() ', () {
       double result = getIt.get<ATM>().deposit(pin: 1234, amount: 6000.0);
       expect(result, 56000.0);
+       expect(() => getIt.get<ATM>().deposit(pin: 9876, amount: 3000.0), throwsException);
+      expect(() => getIt.get<ATM>().deposit(pin: 1234, amount: 50.0), throwsException);
     },);
     
   },);
