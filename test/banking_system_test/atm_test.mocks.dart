@@ -45,3 +45,30 @@ class MockBank extends _i1.Mock implements _i2.Bank {
           Invocation.method(#withdraw, [], {#pin: pin, #amount: amount}),
           returnValue: _i3.Future<double>.value(0.0)) as _i3.Future<double>);
 }
+
+/// A class which mocks [RBI].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRBI extends _i1.Mock implements _i2.RBI {
+  MockRBI() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  bool verifyPin(int? pin) =>
+      (super.noSuchMethod(Invocation.method(#verifyPin, [pin]),
+          returnValue: false) as bool);
+  @override
+  double checkbalance({int? pin}) =>
+      (super.noSuchMethod(Invocation.method(#checkbalance, [], {#pin: pin}),
+          returnValue: 0.0) as double);
+  @override
+  _i3.Future<double> withdraw({int? pin, double? amount}) =>
+      (super.noSuchMethod(
+          Invocation.method(#withdraw, [], {#pin: pin, #amount: amount}),
+          returnValue: _i3.Future<double>.value(0.0)) as _i3.Future<double>);
+  @override
+  double deposit({int? pin, double? amount}) => (super.noSuchMethod(
+      Invocation.method(#deposit, [], {#pin: pin, #amount: amount}),
+      returnValue: 0.0) as double);
+}
